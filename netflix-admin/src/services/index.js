@@ -5,3 +5,5 @@ export { default as userServiceRemoveWatchList} from "./user/user-service-remove
 export { default as userServiceFetchWatchList} from "./user/user-service-fetch-watchlist"
 export { default as contentServiceFetchContent} from "./contents/contents-service-fetch-contetns"
 export { default as contentServiceDeleteeContent} from "./contents/contents-service-delete-content"
+export { default as contentServiceUpdateContent} from "./contents/contents-service-update-content"
+export { default as contentServiceGetContent} from "./contents/contents-service-get-content"
