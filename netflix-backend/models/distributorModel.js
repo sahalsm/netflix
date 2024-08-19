@@ -12,7 +12,7 @@ const distributorSchema = mongoose.Schema({
         required:true
     },
     company_name:{
-        type:[String],
+        type:String,
         required:true,
     },
     content_id:{
@@ -24,7 +24,7 @@ const distributorSchema = mongoose.Schema({
         required:false,
     },
     payment_id: {
-        type:[String],
+        type:String,
         required: false
     }
 });

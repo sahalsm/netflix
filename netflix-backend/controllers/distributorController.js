@@ -4,12 +4,12 @@ const series = require('../models/seriesModel');
 
 const createDistributor = async(req,res)=>{
     try {
-        const Distributor = new Distributor({
+        const distributor = new Distributor({
             email:req.body.email,
             name:req.body.name,
             company_name:req.body.company_name,
         })
-        const Distributor_data = await Distributor.save();
+        const Distributor_data = await distributor.save();
         res.status(200).send({success:true,msg:'Distributor Data', data:Distributor_data});
 
     } catch (error) {
