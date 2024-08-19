@@ -21,7 +21,7 @@ export default function Admin() {
                         Some quick example text to build on the card title and make up the
                         bulk of the card's content.
                         </Card.Text>
-                        <Button variant="danger" href={ROUTES.USER}>Details</Button>
+                        <Button variant="danger" href={ROUTES.USERS}>Details</Button>
                     </Card.Body>
                 </Card>
             </Col>

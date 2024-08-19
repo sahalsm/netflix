@@ -6,6 +6,7 @@ import {
   Title,
   SubTitle,
   Text,
+  Button2,
   Button,
   Feature,
   FeatureTitle,
@@ -42,7 +43,7 @@ Card.Title = function CardTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
 };
 
-Card.Button = function CardButton({ children, slug, userEmail, watchList, ...restProps }) {
+Card.Button2 = function CardButton2({ children, slug, userEmail, watchList, ...restProps }) {
   const [isWatchListed, setIsWatchListed] = useState(watchList);
   const handleWatchListClick = () => {
     if (isWatchListed) {
@@ -86,12 +87,12 @@ Card.Button = function CardButton({ children, slug, userEmail, watchList, ...res
       console.log(error)
     }
   };
-  return <Button 
+  return <Button2 
     onClick={() => {
       handleWatchListClick();
     }}
     {...restProps}>{isWatchListed ? 'Remove' : 'Add to watchlist'}
-  </Button>;
+  </Button2>;
 };
 
 Card.SubTitle = function CardSubTitle({ children, ...restProps }) {

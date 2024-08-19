@@ -9,6 +9,17 @@ export const Title = styled.p`
   margin-top: 0;
 `;
 
+
+export const Button2 = styled.button`
+  background-color: #ff0a16;
+  border-color: #ff0a16;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: #ff0a16;
+  }
+`;
+
 export const Button = styled.button`
   border-color: #ff0a16;
   width: 40px;

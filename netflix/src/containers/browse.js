@@ -57,6 +57,9 @@ export function BrowseContainer({ slides }) {
                     <Header.TextLink active={category === 'watchlist' ? 'true' : 'false'} onClick={() => setCategory('watchLists')}>
                     WatchList
                     </Header.TextLink>
+                    <Header.TextLink active={category === 'recommendation' ? 'true' : 'false'} onClick={() => setCategory('recommendationLists')}>
+                    Recommendation
+                    </Header.TextLink>
                 </Header.Group>
                 <Header.Group>
                     <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -93,8 +96,16 @@ export function BrowseContainer({ slides }) {
                     <Card.Entities>
                     {slideItem.data.map((item) => (
                         <Card.Item key={item.docId} item={item}>
-                        <Card.Button slug={item.slug} userEmail={user.email} watchList={item.watchlist}>{item.watchlist}</Card.Button>
-                        <Card.Image src={`/images/${category === 'watchLists' ? item.category : category}/${item.genre}/${item.slug}/small.jpg`} />
+                        {category !== "watchLists" && (
+                                    <Card.Button2
+                                        slug={item.slug}
+                                        userEmail={user.email}
+                                        watchList={item.watchlist}
+                                    >
+                                        {item.watchlist}
+                                    </Card.Button2>
+                                    )}
+                        <Card.Image src={`/images/${category === 'watchLists' || category === 'recommendationLists' ? item.category : category}/${item.genre}/${item.slug}/small.jpg`} />
                         <Card.Meta>
                             <Card.SubTitle>{item.title}</Card.SubTitle>
                             <Card.Text>{item.description}</Card.Text>

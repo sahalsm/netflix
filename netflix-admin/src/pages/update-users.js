@@ -7,25 +7,23 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import * as ROUTES from '../constants/routes';
-import { useMongoGetContent } from "../hooks";
+import { useUserData } from "../hooks";
 import contentServiceUpdateContent from '../services/contents/contents-service-update-content';
 import Swal from 'sweetalert2';
 
-export default function UpdateContents() {
+export default function UpdateUsers() {
     const location = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(location.search);
-    const contentSlug = queryParams.get('slug');
-    const collection = queryParams.get('collection');
-    const [cover_picture_preview, setcover_picture_preview] = useState('');
-    const [display_picture_preview, setdisplay_picture_preview] = useState('');
+    const contentSlug = queryParams.get('email');
+
     // Fetching content data
-    const fetchedContent = useMongoGetContent(collection, contentSlug);
+    const fetcheduser = useUserData();
 
     // State to hold form data
     const [formData, setFormData] = useState({
-        title: '',
-        description: '',
+        name: '',
+        email: '',
         genre: '',
         maturity: 0,
         slug: '',

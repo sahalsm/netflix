@@ -21,9 +21,56 @@ export default function SignUp() {
   const handleSignup = async (event) => {
     event.preventDefault();
     try {
+      const loadRazorpay = async (name, email) => {
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.onerror = () => {
+          alert("Failed to load Razorpay SDK. Are you online?");
+        };
+        document.body.appendChild(script);
+    
+        script.onload = async () => {
+          const options = {
+            key: 'rzp_test_buLGBnuqCne5wW', // Enter the Key ID generated from the Razorpay Dashboard
+            amount: "50000", // Amount is in currency subunits. Example: 50000 paise = INR 500
+            currency: "INR",
+            name: "Netflix Subscription",
+            description: "Test Transaction",
+            image: "https://cdn.razorpay.com/logos/IQvaOopWRPLzkQ_medium.png", // Optional: Logo URL
+            handler: function (response) {
+              alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+              // You can send the payment ID to your backend for further processing
+            },
+            prefill: {
+              name: name,
+              email: email,
+              contact: "9999999999"
+            },
+            notes: {
+              address: "Your Address"
+            },
+            theme: {
+              color: "#3399cc"
+            }
+          };
+    
+          const paymentObject = new window.Razorpay(options);
+          paymentObject.open();
+        };
+      };
+
+
+
       const formData = new FormData();
       formData.append('name',firstName);
       formData.append('email',emailAddress);
+      await loadRazorpay(firstName, emailAddress);
+      formData.append('subscribed', true);
+      const today = new Date();
+      const date = today.getDate();
+      const month = today.getMonth() + 1; // Months are zero-indexed
+      const year = today.getFullYear();
+      formData.append('subsciption_end_date', `${date}-${month}-${year}`);
       await userServiceCreate(formData);
     } catch (error) {
       setFirstName('');

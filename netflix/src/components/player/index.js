@@ -1,7 +1,7 @@
 import React, { useState, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
-import { Container, Button, Overlay, Inner, Close, ButtonContainer, ButtonGrey } from './styles/player';
-import { userServiceUpdate, userServiceFetch, userServiceRemoveWatchList } from '../../services';
+import { Container, Button, Overlay, Inner, Close, ButtonContainer, Button2 } from './styles/player';
+import { userServiceUpdate, userServiceRemoveWatchList } from '../../services';
 import Swal from 'sweetalert2';
 
 export const PlayerContext = createContext();

@@ -11,10 +11,12 @@ mongoose.connect("mongodb://127.0.0.1:27017/netflix-backend");
 
 const content_route = require('./routes/contentRoute');
 const user_route = require('./routes/userRoute');
+const distributor_route = require('./routes/distributorRoute');
 
 // Mount routes
 app.use('/api/content', content_route);
 app.use('/api/user', user_route);
+app.use('/api/distributor', distributor_route);
 
 
 app.listen(8000, function(){

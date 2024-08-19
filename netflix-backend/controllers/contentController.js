@@ -89,7 +89,6 @@ const updateContents = async(req,res)=> {
 const deleteContent = async(req,res)=> {
     const collection = req.body.collection;
     const id = req.body.id;
-    console.log(collection, id)
     const query = { _id: id };
     try {
         let data = {}

@@ -1,4 +1,4 @@
-export default function selectionFilter({ series, films, watchLists } = {}) {
+export default function selectionFilter({ series, films, watchLists, recommendationLists } = {}) {
   // Helper function to filter and format data for a specific genre
   const filterAndFormatData = (items, genre) => ({
     title: genre,
@@ -31,6 +31,19 @@ export default function selectionFilter({ series, films, watchLists } = {}) {
       filterAndFormatData(watchLists, 'children'),
       filterAndFormatData(watchLists, 'crime'),
       filterAndFormatData(watchLists, 'feel-good'),
+    ].filter(category => category.data.length > 0), // Filter out categories with no data
+    recommendationLists: [
+      filterAndFormatData(recommendationLists, 'drama'),
+      filterAndFormatData(recommendationLists, 'thriller'),
+      filterAndFormatData(recommendationLists, 'children'),
+      filterAndFormatData(recommendationLists, 'suspense'),
+      filterAndFormatData(recommendationLists, 'romance'),
+      filterAndFormatData(recommendationLists, 'documentaries'),
+      filterAndFormatData(recommendationLists, 'comedies'),
+      filterAndFormatData(recommendationLists, 'children'),
+      filterAndFormatData(recommendationLists, 'crime'),
+      filterAndFormatData(recommendationLists, 'feel-good'),
     ].filter(category => category.data.length > 0) // Filter out categories with no data
+
   };
 }
