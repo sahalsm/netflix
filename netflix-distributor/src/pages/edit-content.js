@@ -11,7 +11,7 @@ import { useMongoGetContent } from "../hooks";
 import contentServiceUpdateContent from '../services/contents/contents-service-update-content';
 import Swal from 'sweetalert2';
 
-export default function UpdateContents() {
+export default function EditContent() {
     const location = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(location.search);
@@ -83,7 +83,7 @@ export default function UpdateContents() {
             icon: 'success',
             confirmButtonText: 'OK'
             });
-            navigate(ROUTES.CONTENTS); 
+            navigate(ROUTES.VIEW_CONTENTS); 
         } catch (error) {
             console.log(error)
         }

@@ -6,6 +6,7 @@ import { HeaderContainer } from '../containers/header';
 import { FooterContainer } from '../containers/footer';
 import { distributorServiceCreate } from '../services';
 import * as ROUTES from '../constants/routes';
+import {ethers} from 'ethers';
 
 export default function SignUp() {
   const native = useNavigate();
@@ -14,18 +15,20 @@ export default function SignUp() {
   const [firstName, setFirstName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [companyName, setCompanyName] = useState('');
+  const [paymentId, setPaymentId] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const isInvalid = firstName === '' || password === '' || emailAddress === '' || companyName === '';
+  const isInvalid = firstName === '' || password === '' || emailAddress === '' || companyName === '' ;
 
   const handleSignup = async (event) => {
     event.preventDefault();
     try{
       const formData = new FormData();
       formData.append('name',firstName);
-      formData.append('email',emailAddress);
+      formData.append('email',emailAddress.toLowerCase());
       formData.append('company_name',companyName);
+      formData.append('payment_id',paymentId);
 
       await distributorServiceCreate(formData);
     } catch (error) {
@@ -33,6 +36,7 @@ export default function SignUp() {
       setEmailAddress('');
       setPassword('');
       setCompanyName('');
+      setPaymentId('');
       setError(error.message);
     }
 
@@ -47,7 +51,7 @@ export default function SignUp() {
           })
           .update
           .then(() => {
-            native(ROUTES.BROWSE);
+            native(ROUTES.DISTRIBUTOR);
           })
       )
       .catch((error) => {
@@ -57,6 +61,19 @@ export default function SignUp() {
         setCompanyName('');
         setError(error.message);
       });
+  };
+
+  const handleGetMetaMaskID = async () => {
+    if (window.ethereum) {
+      try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        setPaymentId(accounts[0]); // Set the first account ID as paymentId
+      } catch (error) {
+        setError('Failed to connect to MetaMask');
+      }
+    } else {
+      setError('MetaMask is not installed');
+    }
   };
 
   return (
@@ -83,12 +100,20 @@ export default function SignUp() {
               onChange={({ target }) => setCompanyName(target.value)}
             />
             <Form.Input
+              placeholder="MetaMask Account ID"
+              value={paymentId}
+              onChange={({ target }) => setPaymentId(target.value)}
+            />
+            <Form.Input
               type="password"
               value={password}
               autoComplete="off"
               placeholder="Password"
               onChange={({ target }) => setPassword(target.value)}
             />
+            <Form.FButton type="button" onClick={handleGetMetaMaskID}>
+              Get MetaMask ID
+            </Form.FButton>
             <Form.Submit disabled={isInvalid} type="submit" data-testid="sign-up">
               Sign Up
             </Form.Submit>

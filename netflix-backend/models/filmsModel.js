@@ -25,6 +25,10 @@ const filmsSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    distributor_id:{
+        type:String,
+        required:true
+    },
 });
 
 module.exports = mongoose.model("films",filmsSchema)

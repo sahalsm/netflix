@@ -9,9 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ethersproject/shims": "^5.7.0",
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "ethers": "^6.13.2",
     "express": "^4.19.2",
+    "hardhat": "^2.22.9",
     "mongoose": "^8.5.2",
     "multer": "^1.4.5-lts.1",
     "uuid": "^10.0.0"

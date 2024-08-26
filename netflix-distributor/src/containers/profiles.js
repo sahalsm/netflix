@@ -12,7 +12,7 @@ export function SelectProfileContiner({ user, setProfile }) {
                 </Header.Frame>
             </Header>
             <Profiles>
-                <Profiles.Title>Who's watching?</Profiles.Title>
+                <Profiles.Title>Select the Account</Profiles.Title>
                 <Profiles.List>
                     <Profiles.User 
                         onClick={() => 

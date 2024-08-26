@@ -1,7 +1,7 @@
 import React, { useState, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
 import { Container, Button, Overlay, Inner, Close, ButtonContainer, Button2 } from './styles/player';
-import { userServiceUpdate, userServiceRemoveWatchList } from '../../services';
+import { userServiceUpdate, userServiceRemoveWatchList, distributorPayment } from '../../services';
 import Swal from 'sweetalert2';
 
 export const PlayerContext = createContext();
@@ -44,6 +44,11 @@ Player.Button = function PlayerButton({ userEmail, title, ...restProps }) {
       formData.append('email',userEmail);
       formData.append('history',title);
       await userServiceUpdate(formData);
+      const paymentFormData = new FormData();
+      formData.append('email',userEmail);
+      formData.append('title',title);
+      await distributorPayment(paymentFormData);
+
     } catch (error) {
       console.log(error)
     }

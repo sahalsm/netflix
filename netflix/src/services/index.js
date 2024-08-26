@@ -5,3 +5,4 @@ export { default as userServiceGetRecommendationList} from "./user/user-service-
 export { default as userServiceRemoveWatchList} from "./user/user-service-remove-watchlist"
 export { default as userServiceFetchWatchList} from "./user/user-service-fetch-watchlist"
 export { default as contentServiceFetchContent} from "./contents/contents-service-fetch-contetns"
+export { default as distributorPayment} from "./distributor/distributor-serivice-payment"

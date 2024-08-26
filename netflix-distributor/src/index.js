@@ -6,6 +6,9 @@ import { GlobalStyles } from "./global-style";
 import {firebase} from "./lib/firebase.prod"
 import { FirebaseContext } from './context/firebase';
 
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <>

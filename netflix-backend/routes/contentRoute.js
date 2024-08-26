@@ -11,5 +11,6 @@ content_route.post('/fetch-contents', content_controller.fetchContents);
 content_route.post('/update-contents', content_controller.updateContents);
 content_route.post('/delete-content', content_controller.deleteContent);
 content_route.post('/get-content', content_controller.getContent);
+content_route.post('/add-content', content_controller.addContent);
 
 module.exports = content_route;

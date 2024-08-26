@@ -13,6 +13,7 @@ const mediaSchema = new mongoose.Schema({
   genre: String,
   maturity: String,
   slug: String,
+  distributor_id: String,
 });
 
 // Create models
@@ -33,6 +34,7 @@ async function seedDatabase() {
       genre: 'documentaries',
       maturity: '18',
       slug: 'tiger-king',
+      distributor_id: 'disneyland@gmail.com',
     },
     {
       title: 'Amanda Knox',
@@ -40,6 +42,7 @@ async function seedDatabase() {
       genre: 'documentaries',
       maturity: '12',
       slug: 'amanda-knox',
+      distributor_id: 'disneyland@gmail.com',
     },
     {
         title: 'Citizenfour',
@@ -47,6 +50,7 @@ async function seedDatabase() {
         genre: 'documentaries',
         maturity: '12',
         slug: 'citizenfour',
+        distributor_id: 'disneyland@gmail.com',
     },
     {        
         title: 'Super Size Me',
@@ -54,7 +58,8 @@ async function seedDatabase() {
         genre: 'documentaries',
         maturity: '12',
         slug: 'super-size-me',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Man on Wire',
         description:
@@ -62,7 +67,8 @@ async function seedDatabase() {
         genre: 'documentaries',
         maturity: '12',
         slug: 'man-on-wire',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     
       // Comedies
     {
@@ -72,7 +78,8 @@ async function seedDatabase() {
         genre: 'comedies',
         maturity: '15',
         slug: 'the-office',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Arrested Development',
         description:
@@ -80,7 +87,8 @@ async function seedDatabase() {
         genre: 'comedies',
         maturity: '15',
         slug: 'arrested-development',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Curb Your Enthusiasm',
         description:
@@ -88,7 +96,8 @@ async function seedDatabase() {
         genre: 'comedies',
         maturity: '15',
         slug: 'curb-your-enthusiasm',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Family Guy',
         description:
@@ -96,7 +105,8 @@ async function seedDatabase() {
         genre: 'comedies',
         maturity: '15',
         slug: 'family-guy',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'South Park',
         description:
@@ -104,7 +114,8 @@ async function seedDatabase() {
         genre: 'comedies',
         maturity: '15',
         slug: 'south-park',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     
       // Children
     {
@@ -114,7 +125,8 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'peppa-pig',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Dora The Explorer',
         description:
@@ -122,7 +134,8 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'dora-the-explorer',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'PAW Patrol',
         description:
@@ -130,7 +143,8 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'paw-patrol',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Arthur',
         description:
@@ -138,7 +152,8 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'arthur',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'SpongeBob',
         description:
@@ -146,7 +161,8 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'spongebob',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     
       // Crime
     {
@@ -156,7 +172,8 @@ async function seedDatabase() {
         genre: 'crime',
         maturity: '18',
         slug: 'making-a-murderer',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Long Shot',
         description:
@@ -164,7 +181,8 @@ async function seedDatabase() {
         genre: 'crime',
         maturity: '18',
         slug: 'long-shot',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'The Confession Killer',
         description:
@@ -172,7 +190,8 @@ async function seedDatabase() {
         genre: 'crime',
         maturity: '18',
         slug: 'the-confession-killer',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'The Innocent Man',
         description:
@@ -180,7 +199,8 @@ async function seedDatabase() {
         genre: 'crime',
         maturity: '18',
         slug: 'the-innocent-man',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'The Staircase',
         description:
@@ -188,7 +208,8 @@ async function seedDatabase() {
         genre: 'crime',
         maturity: '18',
         slug: 'the-staircase',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     
       // Feel-good
     {
@@ -198,7 +219,8 @@ async function seedDatabase() {
         genre: 'feel-good',
         maturity: '12',
         slug: 'good-will-hunting',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Forrest Gump',
         description:
@@ -206,7 +228,8 @@ async function seedDatabase() {
         genre: 'feel-good',
         maturity: '12',
         slug: 'forrest-gump',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Juno',
         description:
@@ -214,7 +237,8 @@ async function seedDatabase() {
         genre: 'feel-good',
         maturity: '12',
         slug: 'juno',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'Midnight In Paris',
         description:
@@ -222,7 +246,8 @@ async function seedDatabase() {
         genre: 'feel-good',
         maturity: '12',
         slug: 'midnight-in-paris',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
     {
         title: 'School of Rock',
         description:
@@ -230,7 +255,8 @@ async function seedDatabase() {
         genre: 'feel-good',
         maturity: '12',
         slug: 'school-of-rock',
-    },
+        distributor_id: 'disneyland@gmail.com',
+      },
 
     // ... Add other series here
   ];
@@ -243,6 +269,7 @@ async function seedDatabase() {
       genre: 'drama',
       maturity: '15',
       slug: 'the-prestige',
+        distributor_id: 'disneyland@gmail.com',
     },
     {
       title: 'Fight Club',
@@ -250,6 +277,7 @@ async function seedDatabase() {
       genre: 'drama',
       maturity: '15',
       slug: 'fight-club',
+        distributor_id: 'disneyland@gmail.com',
     },
     {
         title: 'Kings Speech',
@@ -258,6 +286,7 @@ async function seedDatabase() {
         genre: 'drama',
         maturity: '15',
         slug: 'kings-speech',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'The Revenant',
         description:
@@ -265,6 +294,7 @@ async function seedDatabase() {
         genre: 'drama',
         maturity: '15',
         slug: 'the-revenant',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'The Social Network',
         description:
@@ -272,6 +302,7 @@ async function seedDatabase() {
         genre: 'drama',
         maturity: '12',
         slug: 'the-social-network',
+          distributor_id: 'disneyland@gmail.com',
       },   
       // Suspense
       {
@@ -281,6 +312,7 @@ async function seedDatabase() {
         genre: 'suspense',
         maturity: '15',
         slug: 'shutter-island',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Gone Girl',
         description:
@@ -288,6 +320,7 @@ async function seedDatabase() {
         genre: 'suspense',
         maturity: '15',
         slug: 'gone-girl',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Prisoners',
         description:
@@ -295,6 +328,7 @@ async function seedDatabase() {
         genre: 'suspense',
         maturity: '15',
         slug: 'prisoners',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Seven',
         description:
@@ -302,6 +336,7 @@ async function seedDatabase() {
         genre: 'suspense',
         maturity: '15',
         slug: 'seven',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Zodiac',
         description:
@@ -309,6 +344,7 @@ async function seedDatabase() {
         genre: 'suspense',
         maturity: '15',
         slug: 'zodiac',
+          distributor_id: 'disneyland@gmail.com',
       },   
       // Children
       {
@@ -318,6 +354,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'hotel-transylvania',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Despicable Me',
         description:
@@ -325,6 +362,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'despicable-me',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Frozen',
         description:
@@ -332,6 +370,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'frozen',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Spirited Away',
         description:
@@ -339,6 +378,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'spirited-away',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Up',
         description:
@@ -346,6 +386,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'up',
+          distributor_id: 'disneyland@gmail.com',
       },   
       // Thriller
       {
@@ -355,6 +396,7 @@ async function seedDatabase() {
         genre: 'thriller',
         maturity: '15',
         slug: 'joker',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'A Quiet Place',
         description:
@@ -362,6 +404,7 @@ async function seedDatabase() {
         genre: 'thriller',
         maturity: '15',
         slug: 'a-quiet-place',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Black Swan',
         description:
@@ -369,6 +412,7 @@ async function seedDatabase() {
         genre: 'thriller',
         maturity: '15',
         slug: 'black-swan',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Nightcrawler',
         description:
@@ -376,6 +420,7 @@ async function seedDatabase() {
         genre: 'thriller',
         maturity: '15',
         slug: 'nightcrawler',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'The Silence of The Lambs',
         description:
@@ -383,6 +428,7 @@ async function seedDatabase() {
         genre: 'thriller',
         maturity: '15',
         slug: 'the-silence-of-the-lambs',
+          distributor_id: 'disneyland@gmail.com',
       },   
       // Romance
       {
@@ -392,6 +438,7 @@ async function seedDatabase() {
         genre: 'romance',
         maturity: '15',
         slug: 'a-star-is-born',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Blue Valentine',
         description:
@@ -399,6 +446,7 @@ async function seedDatabase() {
         genre: 'romance',
         maturity: '15',
         slug: 'blue-valentine',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'La La Land',
         description:
@@ -406,6 +454,7 @@ async function seedDatabase() {
         genre: 'romance',
         maturity: '15',
         slug: 'la-la-land',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'The Notebook',
         description:
@@ -413,6 +462,7 @@ async function seedDatabase() {
         genre: 'romance',
         maturity: '15',
         slug: 'the-notebook',
+          distributor_id: 'disneyland@gmail.com',
       },     {
         title: 'Titanic',
         description:
@@ -420,6 +470,7 @@ async function seedDatabase() {
         genre: 'romance',
         maturity: '15',
         slug: 'titanic',
+          distributor_id: 'disneyland@gmail.com',
       },   // ... Add other films here
   ];
 

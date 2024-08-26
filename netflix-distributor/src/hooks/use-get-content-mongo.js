@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { userServiceGetRecommendationList } from "../services";
+import { contentServiceGetContent } from "../services";
 
-export default function useRecommendation(userEmail) {
+export default function useGetContentMongo(target, slug) {
     const [data, setData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const formData = new FormData();
-                formData.append('email', userEmail);
-                const fetchedData = await userServiceGetRecommendationList(formData);
+                formData.append('target', target);
+                formData.append('slug', slug);
+                const fetchedData = await contentServiceGetContent(formData);
                 setData(fetchedData.data.data); // Assuming fetchedData is an array of objects
             } catch (error) {
                 console.error('Error fetching MongoDB data:', error);
@@ -16,7 +17,7 @@ export default function useRecommendation(userEmail) {
             }
         };
         fetchData();
-    }, [userEmail]);
+    }, [slug]);
 
-    return {["recommendation"]: data};
+    return data;
 }
