@@ -83,7 +83,7 @@ export default function EditContent() {
             icon: 'success',
             confirmButtonText: 'OK'
             });
-            navigate(ROUTES.VIEW_CONTENTS); 
+            navigate(ROUTES.DISTRIBUTOR); 
         } catch (error) {
             console.log(error)
         }

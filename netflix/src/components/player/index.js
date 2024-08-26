@@ -45,8 +45,7 @@ Player.Button = function PlayerButton({ userEmail, title, ...restProps }) {
       formData.append('history',title);
       await userServiceUpdate(formData);
       const paymentFormData = new FormData();
-      formData.append('email',userEmail);
-      formData.append('title',title);
+      paymentFormData.append('title',title);
       await distributorPayment(paymentFormData);
 
     } catch (error) {

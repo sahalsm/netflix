@@ -116,6 +116,7 @@ export function ViewContentContainer() {
                             <th>Genre</th>
                             <th>Maturity</th>
                             <th>Slug</th>
+                            <th>Distributor Email</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -131,6 +132,7 @@ export function ViewContentContainer() {
                                     <td>{item.genre}</td>
                                     <td>{item.maturity}</td>
                                     <td>{item.slug}</td>
+                                    <td>{item.distributor_id}</td>
                                     <td><Button variant="warning" href={`${ROUTES.UPDATE_CONTENTS}?slug=${item.slug}&collection=series`}>Edit</Button></td>
                                     <td><Button variant="danger" onClick={()=>handleDelete(item._id, "series", item.title)}>Delete</Button></td>
                                 </tr>
@@ -144,6 +146,7 @@ export function ViewContentContainer() {
                                     <td>{item.genre}</td>
                                     <td>{item.maturity}</td>
                                     <td>{item.slug}</td>
+                                    <td>{item.distributor_id}</td>
                                     <td><Button variant="warning" href={`${ROUTES.UPDATE_CONTENTS}?slug=${item.slug}&collection=films`}>Edit</Button></td>
                                     <td><Button variant="danger" onClick={()=>handleDelete(item._id, "films", item.title)}>Delete</Button></td>
                                 </tr>

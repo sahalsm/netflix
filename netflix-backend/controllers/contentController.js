@@ -1,5 +1,6 @@
 const films = require('../models/filmsModel');
 const series = require('../models/seriesModel');
+const Distributor = require('../models/distributorModel');
 const { v4: uuidv4 } = require('uuid');
 
 const fetchContents = async(req, res) => {
@@ -149,6 +150,11 @@ const addContent = async(req,res)=>{
                 distributor_id:req.body.distributor_id,
             })
         }
+
+        const Distributor_data = await Distributor.findOne({email: req.body.distributor_id });
+        Distributor_data.content_id.push(content.id);
+        await Distributor_data.save();
+
         content_data = await content.save();
         res.status(200).send({success:true,msg:'Conent Uploaded', data:content_data});
 

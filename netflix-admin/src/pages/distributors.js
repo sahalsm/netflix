@@ -1,8 +1,8 @@
 import React from 'react';
-import { ViewUsersContainer } from "../containers/view-users";
+import { ViewDistributorContainer } from "../containers/view-distributors";
 
 
 export default function Distributers() {
-    return <ViewUsersContainer/>;
+    return <ViewDistributorContainer/>;
 
 }

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
+const Distributor = require('../models/distributorModel');
 
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/netflix-backend', {
@@ -16,9 +17,17 @@ const mediaSchema = new mongoose.Schema({
   distributor_id: String,
 });
 
+
 // Create models
 const Series = mongoose.model('Series', mediaSchema);
 const Film = mongoose.model('Film', mediaSchema);
+
+
+async function updateDistributor(distributorId, contentId) {
+  const Distributor_data = await Distributor.findOne({email: distributorId });
+  Distributor_data.content_id.push(contentId);
+  await Distributor_data.save();
+}
 
 // Function to seed database
 async function seedDatabase() {
@@ -34,7 +43,7 @@ async function seedDatabase() {
       genre: 'documentaries',
       maturity: '18',
       slug: 'tiger-king',
-      distributor_id: 'disneyland@gmail.com',
+      distributor_id: 'hbo@gmail.com',
     },
     {
       title: 'Amanda Knox',
@@ -50,7 +59,7 @@ async function seedDatabase() {
         genre: 'documentaries',
         maturity: '12',
         slug: 'citizenfour',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
     },
     {        
         title: 'Super Size Me',
@@ -67,7 +76,7 @@ async function seedDatabase() {
         genre: 'documentaries',
         maturity: '12',
         slug: 'man-on-wire',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     
       // Comedies
@@ -87,7 +96,7 @@ async function seedDatabase() {
         genre: 'comedies',
         maturity: '15',
         slug: 'arrested-development',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     {
         title: 'Curb Your Enthusiasm',
@@ -105,7 +114,7 @@ async function seedDatabase() {
         genre: 'comedies',
         maturity: '15',
         slug: 'family-guy',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     {
         title: 'South Park',
@@ -125,7 +134,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'peppa-pig',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     {
         title: 'Dora The Explorer',
@@ -143,7 +152,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'paw-patrol',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     {
         title: 'Arthur',
@@ -161,7 +170,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'spongebob',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     
       // Crime
@@ -181,7 +190,7 @@ async function seedDatabase() {
         genre: 'crime',
         maturity: '18',
         slug: 'long-shot',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     {
         title: 'The Confession Killer',
@@ -199,7 +208,7 @@ async function seedDatabase() {
         genre: 'crime',
         maturity: '18',
         slug: 'the-innocent-man',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     {
         title: 'The Staircase',
@@ -219,7 +228,7 @@ async function seedDatabase() {
         genre: 'feel-good',
         maturity: '12',
         slug: 'good-will-hunting',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     {
         title: 'Forrest Gump',
@@ -237,7 +246,7 @@ async function seedDatabase() {
         genre: 'feel-good',
         maturity: '12',
         slug: 'juno',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
     {
         title: 'Midnight In Paris',
@@ -255,7 +264,7 @@ async function seedDatabase() {
         genre: 'feel-good',
         maturity: '12',
         slug: 'school-of-rock',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
       },
 
     // ... Add other series here
@@ -277,7 +286,7 @@ async function seedDatabase() {
       genre: 'drama',
       maturity: '15',
       slug: 'fight-club',
-        distributor_id: 'disneyland@gmail.com',
+        distributor_id: 'hbo@gmail.com',
     },
     {
         title: 'Kings Speech',
@@ -294,7 +303,7 @@ async function seedDatabase() {
         genre: 'drama',
         maturity: '15',
         slug: 'the-revenant',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },     {
         title: 'The Social Network',
         description:
@@ -312,7 +321,7 @@ async function seedDatabase() {
         genre: 'suspense',
         maturity: '15',
         slug: 'shutter-island',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },     {
         title: 'Gone Girl',
         description:
@@ -328,7 +337,7 @@ async function seedDatabase() {
         genre: 'suspense',
         maturity: '15',
         slug: 'prisoners',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },     {
         title: 'Seven',
         description:
@@ -344,7 +353,7 @@ async function seedDatabase() {
         genre: 'suspense',
         maturity: '15',
         slug: 'zodiac',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },   
       // Children
       {
@@ -362,7 +371,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'despicable-me',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },     {
         title: 'Frozen',
         description:
@@ -378,7 +387,7 @@ async function seedDatabase() {
         genre: 'children',
         maturity: '0',
         slug: 'spirited-away',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },     {
         title: 'Up',
         description:
@@ -396,7 +405,7 @@ async function seedDatabase() {
         genre: 'thriller',
         maturity: '15',
         slug: 'joker',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },     {
         title: 'A Quiet Place',
         description:
@@ -412,7 +421,7 @@ async function seedDatabase() {
         genre: 'thriller',
         maturity: '15',
         slug: 'black-swan',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },     {
         title: 'Nightcrawler',
         description:
@@ -428,7 +437,7 @@ async function seedDatabase() {
         genre: 'thriller',
         maturity: '15',
         slug: 'the-silence-of-the-lambs',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },   
       // Romance
       {
@@ -446,7 +455,7 @@ async function seedDatabase() {
         genre: 'romance',
         maturity: '15',
         slug: 'blue-valentine',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },     {
         title: 'La La Land',
         description:
@@ -462,7 +471,7 @@ async function seedDatabase() {
         genre: 'romance',
         maturity: '15',
         slug: 'the-notebook',
-          distributor_id: 'disneyland@gmail.com',
+          distributor_id: 'hbo@gmail.com',
       },     {
         title: 'Titanic',
         description:
@@ -474,18 +483,21 @@ async function seedDatabase() {
       },   // ... Add other films here
   ];
 
+  
   // Add UUIDs and save series
   for (const series of seriesData) {
     series.id = uuidv4();
     const newSeries = new Series(series);
     await newSeries.save();
+    await updateDistributor(series.distributor_id, series.id);
   }
-
+  
   // Add UUIDs and save films
   for (const film of filmsData) {
     film.id = uuidv4();
     const newFilm = new Film(film);
     await newFilm.save();
+    await updateDistributor(film.distributor_id, film.id);
   }
 
   console.log('Database seeded successfully');

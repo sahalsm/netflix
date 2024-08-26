@@ -18,7 +18,6 @@ export function ViewContentContainer(userEmail) {
   const [profile, setProfile] = useState({});
   const { firebase } = useContext(FirebaseContext);
   const user = firebase.auth().currentUser || {};
-  console.log(userEmail.userEmail)
   const { series } = useMongoContent('series', userEmail.userEmail);
   const { films } = useMongoContent('films', userEmail.userEmail);
   const [seriesData, setSeriesData] = useState([]); 

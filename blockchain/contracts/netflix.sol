@@ -13,7 +13,7 @@ contract ContentPayment {
 
     function payDistributor(address distributor) public payable {
         require(msg.value == paymentAmount, "Incorrect payment amount");
-        distributorBalances[distributor] += msg.value;
+        distributorBalances[distributor] += paymentAmount;
     }
 
     function withdraw() public {

@@ -17,7 +17,7 @@ export default function App() {
         <Route exact path={ROUTERS.VIEW_CONTENTS} element={<ProtectedRoute user={user}>{<ViewContents />}</ProtectedRoute>}/>
         <Route exact path={ROUTERS.EDIT_CONTENT} element={<ProtectedRoute user={user}>{<EditContent />}</ProtectedRoute>}/>
         <Route exact path={ROUTERS.ADD_CONTENT} element={<ProtectedRoute user={user}>{<AddContent />}</ProtectedRoute>}/>
-        <Route exact path={ROUTERS.PAYMENT} element={<ProtectedRoute user={user}>{<Distributor />}</ProtectedRoute>}/>
+        <Route exact path={ROUTERS.PAYMENT} element={<ProtectedRoute user={user}>{<Payment />}</ProtectedRoute>}/>
       </Routes>
     </Router>
   );

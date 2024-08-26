@@ -1,56 +1,67 @@
 import { React } from 'react';
-import * as ROUTES from '../constants/routes';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useDistributorData } from '../hooks';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Table from 'react-bootstrap/Table';
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+export default function Payment() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const queryParams = new URLSearchParams(location.search);
+    const userEmail = queryParams.get('userEmail');
+    console.log(userEmail);
+    const distributor = useDistributorData(userEmail);
 
-export default function Admin() {
-    return  (
+    // Handle cases where distributor or payment_list might be undefined
+    const paymentList = distributor?.payment_list || [];
 
-        <Container style={{ marginTop: '100px' }}>
-          <Row>
-            <Col>
-                <Card style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Title><i className="bi bi-plus-circle"></i>Add Content</Card.Title>
-                        <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                        </Card.Text>
-                        <Button variant="danger" href={ROUTES.ADD_CONTENT}>Details</Button>
-                    </Card.Body>
-                </Card>
-            </Col>
-            <Col>
-                <Card style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Title><i className="bi bi-eye"></i>View Contents</Card.Title>
-                        <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                        </Card.Text>
-                        <Button variant="danger" href={ROUTES.VIEW_CONTENTS}>Details</Button>
-                    </Card.Body>
-                </Card>
-            </Col>
-            <Col>
-                <Card style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Title><i className="bi bi-credit-card"></i>Payment</Card.Title>
-                        <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
-                        </Card.Text>
-                        <Button variant="danger" href={ROUTES.PAYMENT}>Details</Button>
-                    </Card.Body>
-                </Card>
-            </Col>
+    return (
+        <>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <h3 style={{ 
+                    marginTop: '20px', 
+                    fontSize: '48px', 
+                    fontWeight: 'bold',
+                }}>
+                    PAYMENT DETAILS
+                </h3>
+            </div>
 
-          </Row>
-        </Container>
-      );
+            <Container style={{ marginTop: '40px' }}>
+                <Row>
+                    <Col>
+                        <Table striped bordered hover variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Transaction ID</th>
+                                    <th>Etherium</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {paymentList.length > 0 ? (
+                                    paymentList.map((item, index) => (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{item}</td>
+                                            <td>0.01 ETH</td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="2" style={{ textAlign: 'center' }}>
+                                            No transactions found
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </Table>
+                    </Col>
+                </Row>
+            </Container>
+        </>
+    );
 }

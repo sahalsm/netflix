@@ -4,4 +4,4 @@ start cmd /k "cd /d D:\Sahal\ReactJS\git\netflix\netflix-distributor && npm star
 start cmd /k "cd /d D:\Sahal\ReactJS\git\netflix\netflix-backend && nodemon start"
 start cmd /k "cd /d D:\Sahal\ReactJS\git\netflix\blockchain && npx hardhat node"
 
-exit
+exit 1

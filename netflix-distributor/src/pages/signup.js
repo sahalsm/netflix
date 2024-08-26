@@ -67,7 +67,16 @@ export default function SignUp() {
     if (window.ethereum) {
       try {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        setPaymentId(accounts[0]); // Set the first account ID as paymentId
+        
+        // Display accounts to let the user choose or pick the first one
+        if (accounts.length > 1) {
+          // Example: Show the accounts to the user and let them pick (this is just an example)
+          const chosenAccount = accounts[0]; // You can implement a UI for selecting an account if needed
+          setPaymentId(chosenAccount); // Set the chosen account ID as paymentId
+        } else {
+          setPaymentId(accounts[0]); // Set the first account ID as paymentId
+        }
+  
       } catch (error) {
         setError('Failed to connect to MetaMask');
       }

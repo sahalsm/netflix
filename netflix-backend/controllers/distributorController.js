@@ -2,94 +2,86 @@ const Distributor = require('../models/distributorModel');
 const films = require('../models/filmsModel');
 const series = require('../models/seriesModel');
 require('dotenv').config();
-const {ethers, JsonRpcProvider} = require("ethers");
+const {ethers, JsonRpcProvider, dataSlice} = require("ethers");
 
 const provider = new JsonRpcProvider('http://127.0.0.1:8545'); // Local Hardhat node
-// const network = new ethers.Network('localhost', '1337');
-// const provider = new ethers.JsonRpcProvider('http://localhost:8545', network, {
-//   staticNetwork: network,
-// });
-
-const privateKey = "0xde9be858da4a475276426320d5e9262ecfc3ba460bfac56360bfa6c4c28b4ee0";
+const privateKey = "0x689af8efa8c651a91ad287602527f3af2fe9f6501a7ac4b061667b5a93e037fd";
 const wallet = new ethers.Wallet(privateKey, provider);
-// const signer = provider.getSigner();
-// 0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199
-const contractAddress = '0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199';
+const contractAddress = '0xF5Ad2cF33DE73Aa830f7437914eFbA70c4546Ee0';
 const abi = [
-    {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "distributorBalances",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "owner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "distributor",
-          "type": "address"
-        }
-      ],
-      "name": "payDistributor",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "paymentAmount",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "withdraw",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ];
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "distributorBalances",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "distributor",
+        "type": "address"
+      }
+    ],
+    "name": "payDistributor",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paymentAmount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+];
 
-const contract = new ethers.Contract(contractAddress, abi, wallet);
-// provider.getBlockNumber().then(console.log).catch(console.error);
+
 
 const createDistributor = async(req,res)=>{
     try {
@@ -191,24 +183,32 @@ const deleteDistributor = async(req,res)=>{
 }
 
 const distributorPayment = async(req, res)=>{
-    async function checkNetwork() {
-        try {
+  const title = req.body.title;
+  try { 
+    const dataFilms = await films.find({"slug": title});
+    const dataSeries = await series.find({"slug": title});
 
-            const network = await provider.getNetwork();
-            console.log('Connected to network:', network);
-          } catch (error) {
-            console.error('Network error:', error);
-          }
-      }
-    checkNetwork();
-    const distributorAddress = '0xF5Ad2cF33DE73Aa830f7437914eFbA70c4546Ee0';
-    try { 
-        const tx = await contract.payDistributor(distributorAddress, { value: ethers.utils.parseEther("1") });
-        await tx.wait();
-        res.status(200).json({ message: 'Payment successful', tx });
-    } catch (error) {
-        res.status(500).json({ message: 'Payment failed', error: error.message });
+    let distributor_email = {}
+    if (dataFilms.length > 0){
+      distributor_email = dataFilms[0].distributor_id;
+    } else if (dataSeries.length > 0) {
+      distributor_email = dataSeries[0].distributor_id;
+
     }
+    const Distributor_data = await Distributor.findOne({email: distributor_email });
+
+    const distributorAddress = Distributor_data.payment_id
+    const contract = new ethers.Contract(distributorAddress, abi, wallet);
+    const tx = await contract.payDistributor(distributorAddress, { value: ethers.parseEther("0.01") });
+    await tx.wait();
+
+    Distributor_data.payment_list.push(tx.hash);
+    await Distributor_data.save();
+
+    res.status(200).json({ message: 'Payment successful', tx });
+  } catch (error) {
+      res.status(500).json({ message: 'Payment failed', error: error.message });
+  }
 }
 
 

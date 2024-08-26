@@ -9,3 +9,4 @@ export { default as contentServiceFetchContent} from "./contents/contents-servic
 export { default as contentServiceDeleteeContent} from "./contents/contents-service-delete-content"
 export { default as contentServiceUpdateContent} from "./contents/contents-service-update-content"
 export { default as contentServiceGetContent} from "./contents/contents-service-get-content"
+export { default as distributorsServiceFetch} from "./distributor/distributor-service-fetch"
